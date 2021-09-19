@@ -1,5 +1,9 @@
+let array = [];
 sum();
-insertTable();
+//insertTable();
+//results();
+
+
 
 function sum(){
     do{
@@ -15,7 +19,10 @@ function sum(){
     let myTable = document.getElementById("myTable");
 
     alert("OVER!!!");
-    myTable.deleteRow((myTable.rows.length));
+    results();
+    //myTable.deleteRow((myTable.rows.length));
+
+
 
 
 
@@ -23,8 +30,11 @@ function sum(){
 
 }
 
+
 function insertTable(X,OP,Y){
+
     var newRow;
+    //let array = [];
 
     newRow = document.getElementById("myTable").insertRow(-1);
     newRow.insertCell(0).appendChild(document.createTextNode(""));
@@ -37,10 +47,18 @@ function insertTable(X,OP,Y){
         newRow.insertCell(4).appendChild(document.createTextNode("wrong input number"));
 
     } else{
-        newRow.insertCell(4).appendChild(document.createTextNode(operation(parseFloat(X),OP,parseFloat(Y))));
+        var temp = operation(parseFloat(X),OP,parseFloat(Y));
+        if(!isNaN(temp)) {createArray(temp)}
+        newRow.insertCell(4).appendChild(document.createTextNode(temp));
+
     }
 
 
+}
+
+
+function createArray(num){
+    array.push(num);
 }
 
 function operation(x,OP,y){
@@ -50,4 +68,33 @@ function operation(x,OP,y){
     if(OP === "/" || OP === '/') return x / y;
     if(OP === "*" || OP === '*') return x * y;
     else return "computation error";
+}
+
+function results(){
+    var newRow
+
+    newRow = document.getElementById("myTable2").insertRow(-1);
+    newRow.insertCell(0).appendChild(document.createTextNode(""));
+    newRow.insertCell(1).appendChild(document.createTextNode(Math.min(...array)));
+    newRow.insertCell(2).appendChild(document.createTextNode(Math.max(...array)));
+    newRow.insertCell(3).appendChild(document.createTextNode(getAverage()));
+    newRow.insertCell(4).appendChild(document.createTextNode(total()));
+
+}
+
+function getAverage(){
+    var temp = 0;
+    for(var i = 0; i < array.length; i++){
+        temp = temp + array[i];
+    }
+    return temp/array.length;
+}
+
+function total(num){
+    var temp = 0;
+    for(var i = 0; i < array.length; i++){
+        temp = temp + array[i];
+    }
+    return temp;
+
 }
