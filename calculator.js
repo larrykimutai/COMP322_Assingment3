@@ -1,8 +1,5 @@
 let array = [];
 sum();
-//insertTable();
-//results();
-
 
 
 function sum(){
@@ -20,21 +17,12 @@ function sum(){
 
     alert("OVER!!!");
     results();
-    //myTable.deleteRow((myTable.rows.length));
-
-
-
-
-
-
-
 }
 
 
 function insertTable(X,OP,Y){
 
     var newRow;
-    //let array = [];
 
     newRow = document.getElementById("myTable").insertRow(-1);
     newRow.insertCell(0).appendChild(document.createTextNode(""));
@@ -50,16 +38,14 @@ function insertTable(X,OP,Y){
         var temp = operation(parseFloat(X),OP,parseFloat(Y));
         if(!isNaN(temp)) {createArray(temp)}
         newRow.insertCell(4).appendChild(document.createTextNode(temp));
-
     }
-
-
 }
 
 
 function createArray(num){
     array.push(num);
 }
+
 
 function operation(x,OP,y){
     if(OP === "+" || OP === '+') return x + y;
@@ -69,6 +55,7 @@ function operation(x,OP,y){
     if(OP === "*" || OP === '*') return x * y;
     else return "computation error";
 }
+
 
 function results(){
     var newRow
@@ -82,6 +69,7 @@ function results(){
 
 }
 
+
 function getAverage(){
     var temp = 0;
     for(var i = 0; i < array.length; i++){
@@ -90,11 +78,11 @@ function getAverage(){
     return temp/array.length;
 }
 
+
 function total(num){
     var temp = 0;
     for(var i = 0; i < array.length; i++){
         temp = temp + array[i];
     }
     return temp;
-
 }
